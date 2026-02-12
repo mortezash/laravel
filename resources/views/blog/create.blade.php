@@ -1,11 +1,23 @@
-<h1>ایجاد پست جدید</h1>
-<form method="POST" action="{{ route('blog.store') }}">
-    @csrf
-    <input type="text" name="title" placeholder="عنوان">
-    @error('title') <div>{{ $message }}</div> @enderror
+@extends('layouts.app')
 
-    <textarea name="content" placeholder="متن"></textarea>
-    @error('content') <div>{{ $message }}</div> @enderror
+@section('content')
 
-    <button type="submit">ثبت</button>
-</form>
+    <h2>ایجاد پست</h2>
+
+    <form method="POST" action="{{ route('blog.store') }}">
+        @csrf
+
+        <div class="mb-3">
+            <label>عنوان</label>
+            <input type="text" name="title" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>متن</label>
+            <textarea name="content" class="form-control"></textarea>
+        </div>
+
+        <button class="btn btn-success">ثبت</button>
+    </form>
+
+@endsection
