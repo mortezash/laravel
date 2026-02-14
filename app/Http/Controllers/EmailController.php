@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\EmailService;
+use App\Contracts\EmailServiceInterface;
 
 class EmailController extends Controller
 {
 	protected $emailService;
-	public function __construct(EmailService $emailService)
+	public function __construct(EmailServiceInterface $emailService)
 	{
 		$this->emailService = $emailService;
 	}
 
 	public function send()
 	{
-		print $this->emailService->send();
+		return response()->json([
+			'message' => $this->emailService->send()
+		]);
 	}
 }
